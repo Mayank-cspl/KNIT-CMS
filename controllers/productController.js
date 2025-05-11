@@ -55,33 +55,6 @@ export const createProductController = async (req, res) => {
 }
 
 
-
-
-//get all product
-export const getProductController = async (req, res) => {
-    try {
-        const products = await productModel.find({}).populate('category').select("-photo").limit(12).sort({ createdAt: -1 })
-        res.status(200).send({
-            success: true,
-            messsage: "Products",
-            count: products.length,
-            products,
-        })
-    } catch (error) {
-
-        console.log(error)
-        res.status(500).send({
-            success: false,
-            error,
-            message: 'Error in Finding Products',
-        })
-    }
-};
-
-
-
-
-
 // Fetching Single Product
 export const getSingleProductController = async (req, res) => {
     try {
